@@ -1,0 +1,66 @@
+﻿@model OrganizacijaSlavlja.Models.Zurka
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section main
+{
+<div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-7 omotac" >
+      @using (Html.BeginForm("Izmeni_2", "Zurka", FormMethod.Post))
+      {
+           <input type="hidden" name="ZurkaID" value="@Model.ZurkaID" />
+          <div class="row redforme">
+                <div class="col-md-3">Korisnik:</div> 
+                <div class="col-md-3"> <input type="text" name="KorisnickoIme" value="@Model.Korisnik.KorisnickoIme" disabled="disabled" /> </div>
+            </div>
+          <div class="row redforme">
+                <div class="col-md-3">Naziv zurke:</div> 
+                <div class="col-md-3"> <input type="text" name="Naziv" value="@Model.Naziv" /> </div>
+            </div>
+          <div class="row redforme">
+                <div class="col-md-3">Vrsta:</div> 
+                <div class="col-md-3"> <input type="text" name="Vrsta" value="@Model.Vrsta" /> </div>
+            </div>
+            <div class="row redforme">
+                <div class="col-md-3">Vreme odrzavanja:</div> 
+                <div class="col-md-3"> <input type="text" name="VremeOdrzavanja" value="@Model.VremeOdrzavanja" /> </div>
+            </div>
+           <div class="row redforme">
+                <div class="col-md-3">Prodavnica:</div> 
+                <div class="col-md-3"> <select name="Prodavnica" value="@Model.Prodavnica.ProdavnicaID">
+             @for (int i = 0; i < ViewBag.ListaProdavnica.Count; i++)
+             {
+                 if (ViewBag.ListaProdavnica[i].ProdavnicaID == Model.Prodavnica.ProdavnicaID)
+                 {
+                    <option value = "@ViewBag.ListaProdavnica[i].ProdavnicaID" selected>@ViewBag.ListaProdavnica[i].Naziv</option>
+                 }
+                 else
+                 {
+                    <option value = "@ViewBag.ListaProdavnica[i].ProdavnicaID">@ViewBag.ListaProdavnica[i].Naziv</option>
+                 }
+             }
+            </select>
+             </div>
+            </div>
+         
+            <div class="row redforme">
+                <p style="text-indent:80px; padding-top:20px"><input type="submit" class="btn btn-purple" value="Izmeni" style="width:200px"/></p>
+            </div>
+      }
+
+      @using (Html.BeginForm("Obrisi", "Zurka", FormMethod.Post))
+      {
+          <div class="row redforme">
+              <input type="hidden" name="ZurkaID" value="@Model.ZurkaID" />
+              <p style="text-indent:80px; padding-top:20px"><input type="submit" class="btn btn-purple" value="Obrisi" style="width:200px"/></p>
+          </div>
+      }
+      </div>
+       <div class="col-md-1">
+       </div>
+    </div>
+}

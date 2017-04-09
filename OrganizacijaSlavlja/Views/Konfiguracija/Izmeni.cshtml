@@ -1,0 +1,75 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section main
+{
+ 
+<div class="row redforme">
+    <div class="col-md-2">
+    </div>
+
+    <div class="col-md-7 omotacSkracen">
+       <h3>Zurka: @ViewBag.Zurka.Naziv</h2>
+       <h3> Gost: @ViewBag.Gost.Nadimak</h2>
+       <table class="table table-striped table-bordered table-hover table-condensed" width=100%>
+        @for (int i = 0; i < ViewBag.ListaStavki.Count; i++)
+        {
+        
+            <tr> 
+             @using (Html.BeginForm("Izmeni2", "Konfiguracija"))
+             {
+                <td>
+                   @ViewBag.ListaStavki[i].Proizvod.Naziv
+                   <input type=hidden value=@ViewBag.ListaStavki[i].Proizvod.ProizvodID name="ProizvodID" />
+                </td>
+
+                <td>
+                    <input type=text value=@ViewBag.ListaStavki[i].Kolicina name="Kolicina" />
+                    <input type=hidden value=@ViewBag.ListaStavki[i].Zurka.ZurkaID name="ZurkaID"/>
+                    <input type=hidden value=@ViewBag.ListaStavki[i].Gost.GostID name="GostID"/>
+                </td>
+                <td><input type=submit class="btn btn-purple btn-xs" value="Izmeni kolicinu"</td>
+               }
+
+               @using (Html.BeginForm("ObrisiStavku", "Konfiguracija"))
+               {
+               <td>
+                   <input type=submit  class="btn btn-purple btn-xs" value="Obrisi stavku" />
+                   <input type=hidden value=@ViewBag.ListaStavki[i].Zurka.ZurkaID name="ZurkaID"/>
+                   <input type=hidden value=@ViewBag.ListaStavki[i].Gost.GostID name="GostID"/>
+                   <input type=hidden value=@ViewBag.ListaStavki[i].Proizvod.ProizvodID name="ProizvodID" />
+               </td>
+               }
+            </tr>
+        
+        }
+       </table>
+
+       <h4>Dodaj stavku:</h4>
+
+       @using (Html.BeginForm("DodajStavku","Konfiguracija"))
+   {
+        <p>
+            Proizvod:    <select name="ProizvodID">
+           @for (int i = 0; i < ViewBag.ListaProizvoda.Count; i++)
+           {
+               <option value=@ViewBag.ListaProizvoda[i].ProizvodID> @ViewBag.ListaProizvoda[i].Naziv </option>
+           }
+           </select>
+       </p>
+    
+       <p>
+           Kolicina: <input type=text name="Kolicina" />
+           <input type=hidden name="ZurkaID" value=@ViewBag.Zurka.ZurkaID />
+           <input type=hidden name="GostID" value=@ViewBag.Gost.GostID />
+           <input type=submit class="btn btn-purple btn-xs" value="Dodaj Stavku" />
+       </p>    
+   }
+
+   </div>
+
+   <div class="col-md-1">
+   </div>
+</div>
+}

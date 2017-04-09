@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Organizacija slavlja</title>
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-2.1.4.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <link href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/shift.css" rel="stylesheet">
+    @RenderSection("scripts", required: false)
+    
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Organizacija slavlja</h1>
+        </div>
+        <div class="row" id="meni">
+            @Html.ActionLink("Prikazi zurke", "Index", "Zurka") |
+            @Html.ActionLink("Dodaj zurku", "Dodaj", "Zurka") |
+            @Html.ActionLink("Izmeni/Obrisi zurku", "Pronadji", "Zurka") |
+            @Html.ActionLink("Prikazi konfiguraciju zurke", "Index", "Konfiguracija") |
+            @Html.ActionLink("Napravi konfiguraciju zurke", "Dodaj", "Konfiguracija") |
+            @Html.ActionLink("Izmeni konfiguraciju zurke", "Pronadji", "Konfiguracija") |
+            @Html.ActionLink("Obrisi konfiguraciju zurke", "ObrisiKonfiguraciju", "Konfiguracija")
+        </div>
+
+        <div class="row">
+             <div class="col-md-1"></div>
+             <div class="col-md-10" id="sadrzaj">
+                @RenderSection("main", required: true)
+                @RenderBody()
+             </div>
+             <div class="col-md-1"></div>
+        </div>
+    </div>    
+</body>
+</html>

@@ -1,0 +1,51 @@
+﻿@model OrganizacijaSlavlja.Models.Zurka
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section main
+{
+  <div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-7 omotac">
+        @using (Html.BeginForm("Dodaj","Zurka", FormMethod.Post))
+        {
+            <div class="row redforme">
+                <div class="col-md-3">Korisnik:</div> 
+                <div class="col-md-3"> <input type="text" name="KorisnickoIme"/> </div>
+            </div>
+            <div class="row redforme">
+                <div class="col-md-3">Naziv zurke:</div> 
+                <div class="col-md-3"> <input type="text" name="Naziv" /> </div>
+            </div>
+            <div class="row redforme">
+                <div class="col-md-3">Vrsta:</div> 
+                <div class="col-md-3"> <input type="text" name="Vrsta" /> </div>
+            </div>
+            <div class="row redforme">
+                <div class="col-md-3">Vreme odrzavanja:</div> 
+                <div class="col-md-3"> <input type="date" name="VremeOdrzavanja" /> </div>
+            </div>
+              <div class="row redforme">
+                <div class="col-md-3">Prodavnica:</div> 
+                <div class="col-md-3">
+                    <select name="Prodavnica">
+                     @for (int i = 0; i < ViewBag.ListaProdavnica.Count; i++)
+                     {
+                         <option value = "@ViewBag.ListaProdavnica[i].ProdavnicaID">@ViewBag.ListaProdavnica[i].Naziv</option>
+                     }
+                     </select>
+                 </div>
+            </div>
+            <div class="row redforme">
+                <p style="text-indent:80px; padding-top:20px"><input type="submit" class="btn btn-purple" value="Sacuvaj" style="width:200px"/></p>
+            </div>
+        
+        }
+    </div>
+    <div class="col-md-1">
+    </div>
+   </div>
+}

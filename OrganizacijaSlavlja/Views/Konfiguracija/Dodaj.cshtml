@@ -1,0 +1,163 @@
+﻿@model OrganizacijaSlavlja.Models.StavkaKonfiguracijeZurke
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section main
+{
+<div class="row">
+
+    <div class="col-md-2">
+    </div>
+
+    <div class="col-md-7 omotac">
+        <div class="row redforme">
+            @using (Html.BeginForm("UbaciZurku","Konfiguracija"))
+            {
+                <div class="col-md-2"> Zurka: </div>
+                
+                <div class="col-md-3">
+                     <select name="ZurkaID" value="@Model.Zurka.ZurkaID">
+                     @for (int i = 0; i < ViewBag.ListaZurki.Count; i++)
+                     {
+                         if (ViewBag.ListaZurki[i].ZurkaID == Model.Zurka.ZurkaID)
+                         {
+                              <option value="@ViewBag.ListaZurki[i].ZurkaID" selected> @ViewBag.ListaZurki[i].Naziv</option>
+                         }
+                         else
+                         {
+                               <option value="@ViewBag.ListaZurki[i].ZurkaID"> @ViewBag.ListaZurki[i].Naziv</option>
+                         }
+                     }
+            
+                     </select>
+                </div>
+                
+                <div class="col-md-2">
+                 <input type="submit" class="btn btn-purple btn-xs" value="Potvrdi zurku"/>
+                </div>     
+              }
+        </div>
+
+        
+        <div class="row redforme">
+            @using (Html.BeginForm("UbaciGosta", "Konfiguracija"))
+            {
+                <div class="col-md-2"> Gost: </div>
+                 
+                <div class="col-md-3">
+                 <select name="GostID" value="@Model.Gost.GostID">
+                  @for (int i = 0; i < ViewBag.ListaGostiju.Count; i++)
+                  {
+                      if (ViewBag.ListaGostiju[i].GostID == Model.Gost.GostID)
+                      {
+                          <option value="@ViewBag.ListaGostiju[i].GostID" selected> @ViewBag.ListaGostiju[i].Nadimak</option>
+                      }
+                      else
+                      {
+                          <option value="@ViewBag.ListaGostiju[i].GostID"> @ViewBag.ListaGostiju[i].Nadimak</option>
+                      }
+                  }
+                 </select>
+                </div>
+                 
+                <div class="col-md-2">
+                    <input type="submit"  class="btn btn-purple btn-xs"  value="Potvrdi gosta" />
+                </div>
+                 
+                
+            }
+        </div>
+
+       
+         @using (Html.BeginForm("UbaciProizvodKolicinu","Konfiguracija"))
+         {
+          <div class="row redforme">
+             <div class="col-md-2"> Proizvod: </div>
+             
+             <div class="col-md-3">
+              <select name="ProizvodID" value="@Model.Proizvod.ProizvodID">
+               @for (int i = 0; i < ViewBag.ListaProizvoda.Count; i++)
+               {
+                   if (ViewBag.ListaProizvoda[i].ProizvodID == Model.Proizvod.ProizvodID)
+                   {
+                       <option value="@ViewBag.ListaProizvoda[i].ProizvodID" selected> @ViewBag.ListaProizvoda[i].Naziv</option>
+                   }
+                   else
+                   {
+                       <option value="@ViewBag.ListaProizvoda[i].ProizvodID"> @ViewBag.ListaProizvoda[i].Naziv</option>
+                   }
+               }
+              </select>
+             </div>
+
+             <div class="col-md-2">
+             </div>
+          </div>
+             
+          <div class="row redforme">
+                <div class="col-md-2"> Kolicina: </div>
+
+                <div class="col-md-3">
+                    <input type="text" name="Kolicina" value="@Model.Kolicina" />
+                </div>
+
+                <div class="col-md-2">
+                </div>
+          </div>
+             
+           <div class="row redforme">
+                <p style="text-indent:80px; padding-top:20px"><input type="submit" class="btn btn-purple" value="Dodaj u listu" style="width:200px"/></p>
+           </div>
+             
+         }
+        
+    </div>
+
+    <div class="col-md-1">
+    </div>
+</div>
+
+
+    <hr />
+
+<div class="row">
+    <div class="col-md-2">
+    </div>
+
+    <div class="col-md-7 omotac">
+        <div>
+            <table class="table table-striped table-bordered table-hover table-condensed">
+            <tr>
+            <td class="nazivKolone">Naziv zurke</td>
+            <td class="nazivKolone">Gost</td>
+            <td class="nazivKolone">Proizvod</td>
+            <td class="nazivKolone">Kolicina</td>
+            </tr>
+            @for (int i = 0; i < ViewBag.ListaStavki.Count; i++)
+            {
+                <tr>
+                <td>@ViewBag.ListaStavki[i].Zurka.Naziv</td>
+                <td>@ViewBag.ListaStavki[i].Gost.Nadimak</td>
+                <td>@ViewBag.ListaStavki[i].Proizvod.Naziv</td>
+                <td>@ViewBag.ListaStavki[i].Kolicina</td>
+                </tr>
+            }
+            </table>
+        </div>
+
+        <div>
+            @using (Html.BeginForm("SacuvajListu", "Konfiguracija"))
+            {
+                <div class="row redforme">
+                <p style="text-indent:80px; padding-top:20px"><input type="submit" class="btn btn-purple" value="Sacuvaj" style="width:200px"/></p>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="col-md-1">
+    </div>
+</div>
+ }

@@ -1,0 +1,50 @@
+﻿@model OrganizacijaSlavlja.Models.StavkaKonfiguracijeZurke
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+ }
+ 
+   
+ @section main
+ {
+ <div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-7 omotac" >
+ 
+    @using (Html.BeginForm("Izmeni", "Konfiguracija"))
+    {
+          <div class="row redforme">
+                <div class="col-md-3">Zurka:</div> 
+                <div class="col-md-3"> 
+                    <select name="ZurkaID">
+                     @for (int i = 0; i < ViewBag.ListaZurki.Count; i++)
+                     { 
+                      <option value="@ViewBag.ListaZurki[i].ZurkaID"> @ViewBag.ListaZurki[i].Naziv</option>
+                     }
+                    </select>
+                </div>
+            </div>
+       
+          <div class="row redforme">
+                <div class="col-md-3">Gost:</div>
+                <div class="col-md-3">
+                    <select name="GostID">
+                      @for (int i = 0; i < ViewBag.ListaGostiju.Count; i++)
+                      {
+                         <option value="@ViewBag.ListaGostiju[i].GostID"> @ViewBag.ListaGostiju[i].Nadimak</option>
+                      }
+                    </select>
+                </div>
+          </div>
+        
+          <div class="row redforme">
+                <p style="text-indent:80px; padding-top:20px"><input type="submit" class="btn btn-purple" value="Pronadji" style="width:200px"/></p>
+          </div>
+    }
+    </div>
+
+    <div class="col-md-1">
+    </div>
+    </div>
+  }

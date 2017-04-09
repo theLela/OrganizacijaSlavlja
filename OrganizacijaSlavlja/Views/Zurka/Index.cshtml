@@ -1,0 +1,64 @@
+﻿@model OrganizacijaSlavlja.Models.Zurka
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts
+{
+<script type = "text/javascript">
+    $(document).ready(function () {
+
+        $.ajax(
+        {
+            crossDomain: true,
+            type: "GET",
+            url: "http://localhost:3398/MyService.asmx/VratiSveZurke",
+            dataType: "jsonp",
+            success: function (data) 
+            {
+            
+                console.log(data);
+
+                var divTabele = document.getElementById("divTabele");
+
+                var tekst = "<table class=\"table table-striped table-bordered table-hover table-condensed\">";
+                tekst += " <tr>";
+                tekst += "<td class=\"nazivKolone\">ZurkaID</td>"
+                tekst += "<td class=\"nazivKolone\">Naziv Zurke</td>";
+                tekst += "<td class=\"nazivKolone\">Vreme Odrzavanja</td>";
+                tekst += "<td class=\"nazivKolone\">KorisnickoIme</td>";
+                tekst += "<td class=\"nazivKolone\">Prodavnica</td>";
+                tekst += "<td class=\"nazivKolone\">Vrsta Zurke</td>"
+                tekst += "</tr>";
+
+                for (var i = 0; i < data.Zurke.length; i++) {
+
+                    var zurka = data.Zurke[i];
+
+                    tekst += "<tr>";
+                    tekst += "<td>" + zurka.ZurkaID + "</td>";
+                    tekst += "<td>" + zurka.NazivZurke + "</td>";
+                    tekst += "<td>" + zurka.VremeOdrzavanja + "</td>";
+                    tekst += "<td>" + zurka.KorisnickoIme + "</td>";
+                    tekst += "<td>" + zurka.NazivProdavnice + "</td>";
+                    tekst += "<td>" + zurka.Vrsta + "</td>";
+                    tekst += "</tr>";
+                }
+                tekst += "</table>";
+
+                divTabele.innerHTML = tekst;
+            },
+            error: function (error) {
+                divTabele.innerHTML = "<h1 style=\"color:red;\">Greska u dobavljanju podataka od servisa.</h1>";
+            }
+        });
+    });
+</script>
+}
+@section main
+{
+    <br />
+    <br />
+    <div id="divTabele"></div>
+}
+

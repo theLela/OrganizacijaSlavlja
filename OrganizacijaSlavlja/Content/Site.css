@@ -1,0 +1,69 @@
+﻿
+
+.jumbotron
+{
+    background-image:url("macka.jpg");
+    background-size: 100%;
+    height:270px;
+    background-position:50% 30%;
+    color:Black;
+    
+}
+
+div#meni
+{
+    background-color:Black;
+    color: White;
+    text-align:center;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+}
+
+
+div#sadrzaj
+{
+    padding-top: 30px;
+}
+
+
+div.redforme
+{
+    padding-bottom: 10px;
+}
+
+.nazivKolone
+{
+    font-weight:bold;
+}
+
+.btn-purple {
+  background-color: hsl(274, 49%, 37%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#985bc7", endColorstr="#64308c");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#985bc7), to(#64308c));
+  background-image: -moz-linear-gradient(top, #985bc7, #64308c);
+  background-image: -ms-linear-gradient(top, #985bc7, #64308c);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #985bc7), color-stop(100%, #64308c));
+  background-image: -webkit-linear-gradient(top, #985bc7, #64308c);
+  background-image: -o-linear-gradient(top, #985bc7, #64308c);
+  background-image: linear-gradient(#985bc7, #64308c);
+  border-color: #64308c #64308c hsl(274, 49%, 32%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
+  -webkit-font-smoothing: antialiased;
+}
+
+div.omotac
+{
+    background-color: #dddddd;
+    padding:30px 10px 10px 60px;
+    margin-left: 20px;
+}
+
+div.omotacSkracen
+{
+    background-color: #dddddd;
+    padding:30px 10px 10px 20px;
+    margin-left: 20px;
+}
